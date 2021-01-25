@@ -1,17 +1,20 @@
 <template>
-  <div></div>
+  <MainLayout />
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import MainLayout from '@/components/Layout/main-layout.vue'
 export default defineComponent({
   name: 'App',
+  components: {
+    MainLayout,
+  },
 })
 </script>
 
 <style lang="stylus">
 html, body
-  background rgba(0,0,0,0.5)
   font-family Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
@@ -26,18 +29,17 @@ html, body
   height 100%
   overflow hidden
   font-size .1rem
-  background url('/src/assets/images/background.jpg') center/cover no-repeat
 
-/* 设置滚动条的样式 */
-::-webkit-scrollbar {
-  width: .05rem;
-}
-/* 滚动条滑块 */
-::-webkit-scrollbar-thumb {
-  background:rgba(91, 213, 255, 0.5)
-  -webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
-}
-::-webkit-scrollbar-thumb:window-inactive {
-  background:rgba(91, 213, 255, 0.5)
-}
+// /* 设置滚动条的样式 */
+// ::-webkit-scrollbar {
+//   width: .05rem;
+// }
+// /* 滚动条滑块 */
+// ::-webkit-scrollbar-thumb {
+//   background:rgba(91, 213, 255, 0.5)
+//   -webkit-box-shadow:inset006pxrgba(0,0,0,0.5);
+// }
+// ::-webkit-scrollbar-thumb:window-inactive {
+//   background:rgba(91, 213, 255, 0.5)
+// }
 </style>
