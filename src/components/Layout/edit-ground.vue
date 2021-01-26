@@ -1,8 +1,9 @@
 <template>
   <div class="edit-ground">
     <div class="board">
-      <!-- <grid-layout
-        :layout="layout"
+      <grid-layout
+        v-model="layout"
+        class="grid-layout"
         :col-num="12"
         :row-height="30"
         :is-draggable="true"
@@ -11,19 +12,21 @@
         :vertical-compact="true"
         :margin="[10, 10]"
         :use-css-transforms="true"
+        @layout-updated="updateGridLayout"
       >
         <grid-item
           v-for="item in layout"
+          :key="item.i"
+          class="grid-item"
           :x="item.x"
           :y="item.y"
           :w="item.w"
           :h="item.h"
           :i="item.i"
-          :key="item.i"
         >
           {{ item.i }}
         </grid-item>
-      </grid-layout> -->
+      </grid-layout>
     </div>
   </div>
 </template>
@@ -32,6 +35,13 @@
 import { defineComponent, ref } from 'vue'
 import { GridLayout, GridItem } from 'vue-grid-layout'
 
+interface GridItemProp {
+  x: number
+  y: number
+  w: number
+  h: number
+  i: string
+}
 export default defineComponent({
   name: 'EditGround',
   components: {
@@ -39,7 +49,7 @@ export default defineComponent({
     GridItem,
   },
   setup() {
-    const layout = ref([
+    const layout = ref<GridItemProp[]>([
       { x: 0, y: 0, w: 2, h: 2, i: '0' },
       { x: 2, y: 0, w: 2, h: 4, i: '1' },
       { x: 4, y: 0, w: 2, h: 5, i: '2' },
@@ -61,7 +71,10 @@ export default defineComponent({
       { x: 0, y: 9, w: 2, h: 3, i: '18' },
       { x: 2, y: 6, w: 2, h: 2, i: '19' },
     ])
-    return { layout }
+    const updateGridLayout = (data: GridItemProp[]) => {
+      layout.value = data
+    }
+    return { layout, updateGridLayout }
   },
 })
 </script>
@@ -76,8 +89,14 @@ export default defineComponent({
   align-items center
   justify-content center
   .board
-    width 80%
-    height 50%
+    width 90%
+    height 80%
+    overflow-y auto
     background #fff
     box-shadow 0 0 .05rem .01rem rgba(0,0,0,0.2)
+    .grid-layout
+      width 100%
+      .grid-item
+        background #aaa
+        touch-action none
 </style>

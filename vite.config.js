@@ -26,6 +26,6 @@ export default defineConfig({
   //   base: './',
   // },
   optimizeDeps: {
-    include: ['moment/locale/zh-cn', 'vue-grid-layout'],
+    include: ['moment/locale/zh-cn', 'vue-grid-layout', 'vuedraggable'],
   },
 })
